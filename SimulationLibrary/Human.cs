@@ -7,7 +7,6 @@ namespace SimulationLibrary
         public string Name { get; set; }
         public int Hunger { get; set; } = 10;
         
-        
 
         public void BuyFood()
         {
@@ -17,5 +16,7 @@ namespace SimulationLibrary
         {
             
         }
+
+        public abstract string GetJob(Random random);
     }
 }

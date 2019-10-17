@@ -13,6 +13,10 @@ namespace SimulationLibrary
         public Population()
         {
             Humans = new List<Human>();
+            for (int i = 0; i <= 10; i++)
+            {
+                AddHuman(new Adult());
+            }
         }
 
         public void AddHuman(Human human)
