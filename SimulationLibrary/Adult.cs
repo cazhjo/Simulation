@@ -8,21 +8,21 @@ namespace SimulationLibrary
     {
         public int Salary { get; set; }
         public int Balance { get; set; }
-        public bool HasJob { get; set; }
+
+        public Adult()
+        {
+            Name = NameGenerator.GenerateName(6);
+        }
 
         public override string GetJob(Random random)
         {
-            if (HasJob)
-            {
-                return Name + "Already has a job";
-            }
-            if(random.Next(1, 6) == 5)
+            if(random.Next(1, 1) == 1)
             {
                 HasJob = true;
                 SetSalary(random.Next(100, 300));
-                return Name + "has gotten a job!";
+                return Name + " has gotten a job!";
             }
-            return Name + "did not get a job";
+            return Name + " did not get a job";
         }
         
         private void SetSalary(int salary)
