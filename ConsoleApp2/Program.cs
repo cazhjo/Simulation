@@ -36,15 +36,15 @@ namespace ConsoleApp2
             populationDisplay
         };
 
-        Population population = new Population(10);
+        Population population = Population.Instance;
         public override void PassTime(int deltaTime)
         {
             clockDisplay.Value = time.ToString("mm:ss");
             time = time.AddSeconds(1);
-
+            
             if(time.Minute == 1)
             {
-                log.Log(population.GetAllJobs(random));
+                log.Log(population.GetAllJobs());
             }
             else if(time.Minute == 2)
             {

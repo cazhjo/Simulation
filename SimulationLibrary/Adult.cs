@@ -6,28 +6,33 @@ namespace SimulationLibrary
 {
     public class Adult : Human
     {
-        public int Salary { get; set; }
         public int Balance { get; set; }
+        public IJob Job { get; set; }
+        public string JobStatus => Job.Name;
 
         public Adult()
         {
             Name = NameGenerator.GenerateName(6);
+            Job = new Unemployed();
         }
 
-        public override string GetJob()
+        public override void GetJob()
         {
-            if(Globals.random.Next(1, 1) == 1)
+            bool canGetJob = Globals.random.Next(0, 5) == 4;
+            if (canGetJob)
             {
-                HasJob = true;
-                SetSalary(Globals.random.Next(100, 300));
-                return Name + " has gotten a job!";
+                int jobPicker = Globals.random.Next(0, 3);
+
+                switch (jobPicker)
+                {
+                    case 0:
+                        Job = new FastFoodWorker();
+                        break;
+                    case 1:
+                        Job = new Programmer();
+                        break;
+                }
             }
-            return Name + " did not get a job";
-        }
-        
-        private void SetSalary(int salary)
-        {
-            Salary = salary;
         }
     }
 }

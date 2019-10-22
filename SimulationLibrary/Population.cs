@@ -9,13 +9,20 @@ namespace SimulationLibrary
         public List<Human> Humans {get; set; }
         public int Deaths { get; private set; }
         public int Births { get; set; }
+        private static Population instance = new Population();
+
+        /// <summary>
+        /// Returns an instance of Population with 10 initial Adults
+        /// </summary>
+        public static Population Instance => instance;
+
 
         public int Count => Humans.Count;
 
-        public Population(int initialPopulationCount)
+        private Population()
         {
             Humans = new List<Human>();
-            for (int i = 0; i < initialPopulationCount; i++)
+            for (int i = 0; i < 10; i++)
             {
                 AddHuman(new Adult());
             }

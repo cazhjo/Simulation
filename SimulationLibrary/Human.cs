@@ -6,7 +6,6 @@ namespace SimulationLibrary
     {
         public string Name { get; set; }
         public int Hunger { get; set; } = 10;
-        public bool HasJob { get; set; }
 
         public void BuyFood()
         {
@@ -17,6 +16,6 @@ namespace SimulationLibrary
             
         }
 
-        public abstract string GetJob();
+        public abstract void GetJob();
     }
 }
