@@ -14,12 +14,12 @@ namespace SimulationLibrary
             Name = NameGenerator.GenerateName(6);
         }
 
-        public override string GetJob(Random random)
+        public override string GetJob()
         {
-            if(random.Next(1, 1) == 1)
+            if(Globals.random.Next(1, 1) == 1)
             {
                 HasJob = true;
-                SetSalary(random.Next(100, 300));
+                SetSalary(Globals.random.Next(100, 300));
                 return Name + " has gotten a job!";
             }
             return Name + " did not get a job";

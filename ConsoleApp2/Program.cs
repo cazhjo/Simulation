@@ -36,7 +36,7 @@ namespace ConsoleApp2
             populationDisplay
         };
 
-        Population population = new Population();
+        Population population = new Population(10);
         public override void PassTime(int deltaTime)
         {
             clockDisplay.Value = time.ToString("mm:ss");

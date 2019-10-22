@@ -17,6 +17,6 @@ namespace SimulationLibrary
             
         }
 
-        public abstract string GetJob(Random random);
+        public abstract string GetJob();
     }
 }

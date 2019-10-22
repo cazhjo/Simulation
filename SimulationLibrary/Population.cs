@@ -10,21 +10,15 @@ namespace SimulationLibrary
         public int Deaths { get; private set; }
         public int Births { get; set; }
 
-        /// <summary>
-        /// Creates new population with 10 humans
-        /// </summary>
-        public Population()
+        public int Count => Humans.Count;
+
+        public Population(int initialPopulationCount)
         {
             Humans = new List<Human>();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < initialPopulationCount; i++)
             {
                 AddHuman(new Adult());
             }
-        }
-
-        public int Count()
-        {
-            return Humans.Count;
         }
 
         public void AddHuman(Human human)
@@ -40,13 +34,13 @@ namespace SimulationLibrary
             }
         }
 
-        public string GetAllJobs(Random random)
+        public string GetAllJobs()
         {
             foreach (var human in Humans)
             {
                 if (human.HasJob == false)
                 {
-                    human.GetJob(random);
+                    human.GetJob();
                 }
             }
             return "yee";
@@ -58,9 +52,22 @@ namespace SimulationLibrary
             {
                 if(Humans[i].Hunger == 0)
                 {
-                    Humans.RemoveAt(i);
-                    Deaths++;
+                    KillHuman(i);
                 }
+            }
+        }
+
+        private void KillHuman(int index)
+        {
+            Humans.RemoveAt(index);
+            Deaths++;
+        }
+
+        private void LoopThroughPopulation(Func<bool> condition)
+        {
+            for (int i = 0; i < Humans.Count; i++)
+            {
+                
             }
         }
     }
