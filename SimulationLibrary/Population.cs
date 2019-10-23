@@ -9,6 +9,8 @@ namespace SimulationLibrary
         public List<Human> Humans {get; set; }
         public int Deaths { get; private set; }
         public int Births { get; set; }
+        public int Count => Humans.Count;
+
         private static Population instance = new Population();
 
         /// <summary>
@@ -16,8 +18,7 @@ namespace SimulationLibrary
         /// </summary>
         public static Population Instance => instance;
 
-
-        public int Count => Humans.Count;
+        
 
         private Population()
         {
@@ -41,18 +42,6 @@ namespace SimulationLibrary
             }
         }
 
-        public string GetAllJobs()
-        {
-            foreach (var human in Humans)
-            {
-                if (human.HasJob == false)
-                {
-                    human.GetJob();
-                }
-            }
-            return "yee";
-        }
-
         public void CheckHunger()
         {
             for (int i = 0; i < Humans.Count; i++)
@@ -68,14 +57,6 @@ namespace SimulationLibrary
         {
             Humans.RemoveAt(index);
             Deaths++;
-        }
-
-        private void LoopThroughPopulation(Func<bool> condition)
-        {
-            for (int i = 0; i < Humans.Count; i++)
-            {
-                
-            }
         }
     }
 }

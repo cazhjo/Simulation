@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SimulationLibrary
 {
-    public class FastFoodWorker : IJob
+    public class FastFoodWorker : IOccupation
     {
         public int Salary => 100;
         public string Name => "Fast Food Worker";

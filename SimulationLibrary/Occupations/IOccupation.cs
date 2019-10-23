@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SimulationLibrary
 {
-    public interface IJob
+    public interface IOccupation
     {
         int Salary { get; }
         string Name { get; }
@@ -16,7 +16,7 @@ namespace SimulationLibrary
 
         public void FireFromJob(Adult adult)
         {
-            adult.Job = new Unemployed();
+            adult.Occupation = new Unemployed();
         }
     }
 }

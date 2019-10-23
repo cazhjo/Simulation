@@ -41,27 +41,10 @@ namespace ConsoleApp2
         {
             clockDisplay.Value = time.ToString("mm:ss");
             time = time.AddSeconds(1);
+            deathsDisplay.Value = "Deaths: " + population.Deaths.ToString();
+            populationDisplay.Value = "Population: " + population.Count.ToString();
             
-            if(time.Minute == 1)
-            {
-                log.Log(population.GetAllJobs());
-            }
-            else if(time.Minute == 2)
-            {
-                population.ReduceHunger();
-                population.CheckHunger();
-                log.Log($"Hunger {population.Humans[0].Hunger}");
-            }
-
-                deathsDisplay.Value = "Deaths: " + population.Deaths.ToString();
-                populationDisplay.Value = "Population: " + population.Humans.Count.ToString();
-
             
-
-            if(time.Minute == 02)
-            {
-                time = time.Subtract(time.TimeOfDay);
-            }
 
             while (Input.HasInput)
             {

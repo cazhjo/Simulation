@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimulationLibrary.Occupations;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,32 +8,33 @@ namespace SimulationLibrary
     public class Adult : Human
     {
         public int Balance { get; set; }
-        public IJob Job { get; set; }
-        public string JobStatus => Job.Name;
+        public IOccupation Occupation { get; set; }
+        public string OccupationStatus => Occupation.Name;
 
         public Adult()
         {
-            Name = NameGenerator.GenerateName(6);
-            Job = new Unemployed();
+            Name = null ?? NameGenerator.GenerateName(6);
+            Occupation = new Unemployed();
+            IsAdult = true;
         }
 
-        public override void GetJob()
+        public Adult(Child child) : this()
         {
-            bool canGetJob = Globals.random.Next(0, 5) == 4;
-            if (canGetJob)
+            if (!child.IsAdult)
             {
-                int jobPicker = Globals.random.Next(0, 3);
-
-                switch (jobPicker)
+                Name = child.Name;
+                if (child.IsEducated)
                 {
-                    case 0:
-                        Job = new FastFoodWorker();
-                        break;
-                    case 1:
-                        Job = new Programmer();
-                        break;
+                    IsEducated = true;
                 }
             }
         }
+
+        public override void GetOccupation()
+        {
+            JobPicker.PickJob(this);
+        }
     }
 }
+    
+

@@ -8,7 +8,7 @@ namespace SimulationLibrary
     {
         public static string GenerateName(int len)
         {
-            Random r = new Random();
+            Random r = Globals.random;
             string[] consonants = { "b", "c", "d", "f", "g", "h", "j", "k", "l", "m", "l", "n", "p", "q", "r", "s", "sh", "zh", "t", "v", "w", "x" };
             string[] vowels = { "a", "e", "i", "o", "u", "ae", "y" };
             string Name = "";
