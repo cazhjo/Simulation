@@ -8,8 +8,9 @@ namespace SimulationLibrary
     public class Adult : Human
     {
         public int Balance { get; set; }
-        public IOccupation Occupation { get; set; }
+        public IOccupation Occupation { get; internal set; }
         public string OccupationStatus => Occupation.Name;
+        
 
         public Adult()
         {
@@ -29,6 +30,12 @@ namespace SimulationLibrary
                 }
             }
         }
+
+        //public override Couple CoupleWith(Adult adult)
+        //{
+        //    @Couple = new Couple(this, adult);
+        //    return @Couple;
+        //}
 
         public override void GetOccupation()
         {

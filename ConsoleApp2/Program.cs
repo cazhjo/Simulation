@@ -44,7 +44,21 @@ namespace ConsoleApp2
             deathsDisplay.Value = "Deaths: " + population.Deaths.ToString();
             populationDisplay.Value = "Population: " + population.Count.ToString();
             
-            
+            if(time.Minute == 1 && time.Second < 1)
+            {
+                population.CreateCouples();
+                population.MakeChildren();
+            }
+
+            if (time.Minute == 2 && time.Second < 1)
+            {
+                log.Log(population.MakeChildrenAdults());
+            }
+
+            if(time.Minute == 3)
+            {
+                time = new DateTime();
+            }
 
             while (Input.HasInput)
             {

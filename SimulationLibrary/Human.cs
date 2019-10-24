@@ -8,6 +8,8 @@ namespace SimulationLibrary
         public int Hunger { get; set; } = 10;
         public bool IsEducated { get; protected set; }
         public bool IsAdult { get; protected set; }
+        public bool HasPartner { get; internal set; }
+        public Couple @Couple { get; set; }
 
         public void BuyFood()
         {
@@ -21,6 +23,12 @@ namespace SimulationLibrary
         public void ReduceHunger(int amount)
         {
             Hunger -= amount;
+        }
+
+        public virtual Couple CoupleWith(Human human2)
+        {
+            @Couple = new @Couple(this, human2);
+            return @Couple;
         }
 
         public abstract void GetOccupation();
