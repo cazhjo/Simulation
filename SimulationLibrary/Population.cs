@@ -72,7 +72,7 @@ namespace SimulationLibrary
                 if (!Humans[i].IsAdult)
                 {
                     Humans[i] = new Adult((Child)Humans[i]);
-                    return Humans[i].Name + "Became an adult";
+                    return Humans[i].Name + " Became an adult";
                 }
             }
             return null;

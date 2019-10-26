@@ -31,12 +31,6 @@ namespace SimulationLibrary
             }
         }
 
-        //public override Couple CoupleWith(Adult adult)
-        //{
-        //    @Couple = new Couple(this, adult);
-        //    return @Couple;
-        //}
-
         public override void GetOccupation()
         {
             JobPicker.PickJob(this);
