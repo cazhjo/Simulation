@@ -12,12 +12,11 @@ namespace SimulationLibrary
         public int Hunger { get; set; } = 100;
         public bool IsEducated { get; internal set; }
         public bool IsAdult { get; protected set; }
-        internal IOccupation Occupation { get; set; }
+        public IOccupation Occupation { get; internal set; }
         internal List<IFood> FoodInventory { get; set; } = new List<IFood>();
 
         public void BuyFood()
         {
-
             if (Balance > 0)
             {
                 foreach (var item in FoodStore.FoodStorage)
@@ -53,6 +52,6 @@ namespace SimulationLibrary
             Hunger -= amount;
         }
 
-        public abstract void GetOccupation();
+        public abstract void GetOccupation(int chance);
     }
 }

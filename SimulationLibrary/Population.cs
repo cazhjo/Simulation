@@ -7,7 +7,7 @@ namespace SimulationLibrary
 {
     public class Population
     {
-        public List<Human> Humans { get; set; }
+        public List<Human> Humans { get; private set; }
         public int Deaths { get; private set; }
         public int Births { get; set; }
         public int Count => Humans.Count;
@@ -78,7 +78,7 @@ namespace SimulationLibrary
         {
             for (int i = 0; i < Humans.Count; i++)
             {
-                if (!Humans[i].IsAdult && Humans[i].Age > 0)
+                if (!Humans[i].IsAdult && Humans[i].Age > 3)
                 {
                     Humans[i] = new Adult((Child)Humans[i]);
                     Announcements.Add($"{Humans[i].Name} became an adult!");
@@ -145,7 +145,7 @@ namespace SimulationLibrary
                 {
                     if (human.IsAdult)
                     {
-                        human.GetOccupation();
+                        human.GetOccupation(4);
                         if (human.Occupation.Name != "Unemployed")
                         {
                             Announcements.Add($"{human.Name} has gotten a job as a {human.Occupation.Name}");
@@ -153,7 +153,7 @@ namespace SimulationLibrary
                     }
                     else
                     {
-                        human.GetOccupation();
+                        human.GetOccupation(4);
                         if(human.Occupation.Name != "Unemployed")
                         {
                             Announcements.Add($"{human.Name} has started School");
@@ -198,15 +198,18 @@ namespace SimulationLibrary
             Announcements.Clear();
         }
 
-        private void KillHuman(int index)
+        public void KillHuman(int index)
         {
-            Announcements.Add($"{Humans[index].Name} has died");
-            if (Humans[index].IsAdult)
+            if (Humans.Count > 0)
             {
-                Couple.BreakUp((Adult)Humans[index]);
+                Announcements.Add($"{Humans[index].Name} has died");
+                if (Humans[index].IsAdult)
+                {
+                    Couple.BreakUp((Adult)Humans[index]);
+                }
+                Humans.RemoveAt(index);
+                Deaths++;
             }
-            Humans.RemoveAt(index);
-            Deaths++;
         }
     }
 }

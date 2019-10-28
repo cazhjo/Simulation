@@ -15,9 +15,9 @@ namespace SimulationLibrary
             Occupation = new Unemployed();
         }
 
-        public override void GetOccupation()
+        public override void GetOccupation(int chance)
         {
-            JobPicker.PickJob(this, 4);
+            JobPicker.PickJob(this, chance);
         }
     }
 }

@@ -16,6 +16,7 @@ namespace SimulationLibrary
             Name = null ?? NameGenerator.GenerateName(6);
             Occupation = new Unemployed();
             IsAdult = true;
+            Age = 3;
         }
 
         public Adult(Child child) : this()
@@ -26,13 +27,14 @@ namespace SimulationLibrary
                 if (child.IsEducated)
                 {
                     IsEducated = true;
+                    Balance = child.Balance;
                 }
             }
         }
 
-        public override void GetOccupation()
+        public override void GetOccupation(int chance)
         {
-            JobPicker.PickJob(this, 4);
+            JobPicker.PickJob(this, chance);
         }
     }
 }
