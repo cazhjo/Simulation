@@ -6,7 +6,7 @@ namespace SimulationLibrary
 {
     class Programmer : IOccupation
     {
-        public int Salary => 300;
+        public int Salary => 100;
         public string Name => "Programmer";
     }
 }

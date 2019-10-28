@@ -4,27 +4,45 @@ using System.Text;
 
 namespace SimulationLibrary
 {
-    public class Couple
+    public static class Couple
     {
-        public Human[] couple;
-
-        public Couple(Human human1, Human human2)
+        
+        public static bool MakeCouple(Adult adult1, Adult adult2, int chance)
         {
-            couple = new Human[2] { human1, human2 };
-            human1.HasPartner = true;
-            human2.HasPartner = true;
+            int tempChance = Globals.random.Next(0, chance);
+            if ((!adult1.HasPartner && !adult2.HasPartner)&& adult1 != adult2 && tempChance == chance - 1)
+            {
+                adult1.Partner = adult2;
+                adult2.Partner = adult1;
+
+                adult1.HasPartner = true;
+                adult2.HasPartner = true;
+
+                return true;
+            }
+            return false;
         }
 
-        public void BreakUp()
+        public static void BreakUp(Adult adult)
         {
-            couple[0].HasPartner = false;
-            couple[1].HasPartner = false;
-            Array.Clear(couple, 0, 2);
+            if (adult.HasPartner)
+            {
+                adult.Partner.HasPartner = false;
+                adult.Partner.Partner = null;
+
+                adult.Partner = null;
+                adult.HasPartner = false;
+            }
         }
 
-        public Child MakeChild()
+        public static Child MakeChild(Adult adult, int chance)
         {
-            return new Child();
+            int tempChance = Globals.random.Next(0, chance);
+            if (adult.HasPartner && tempChance == chance - 1)
+            {
+                return new Child();
+            }
+            return null;
         }
     }
 }

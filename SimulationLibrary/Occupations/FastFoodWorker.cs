@@ -6,7 +6,7 @@ namespace SimulationLibrary
 {
     public class FastFoodWorker : IOccupation
     {
-        public int Salary => 100;
+        public int Salary => 50;
         public string Name => "Fast Food Worker";
 
     }

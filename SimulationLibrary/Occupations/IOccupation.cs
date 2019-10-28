@@ -9,12 +9,12 @@ namespace SimulationLibrary
         int Salary { get; }
         string Name { get; }
 
-        public void PaySalary(Adult recipient)
+        public void GetSalary(Human recipient)
         {
             recipient.Balance += Salary;
         }
 
-        public void FireFromJob(Adult adult)
+        public void FireFromJob(Human adult)
         {
             adult.Occupation = new Unemployed();
         }

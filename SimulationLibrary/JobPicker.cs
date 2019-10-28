@@ -7,28 +7,34 @@ namespace SimulationLibrary
 {
     public static class JobPicker
     {
-        public static void PickJob(Adult adult)
+        public static void PickJob(Human human, int chance)
         {
-            bool canGetJob = Globals.random.Next(0, 5) == 4;
+            bool canGetJob = Globals.random.Next(0, chance) == chance - 1;
             if (canGetJob)
             {
-                int jobPicker = Globals.random.Next(0, 3);
+                int jobPicker = Globals.random.Next(0, 2);
 
-                JobChoices(adult, jobPicker);
+                JobChoices(human, jobPicker);
             }
         }
 
-        private static void JobChoices(Adult adult, int jobNumber)
+        private static void JobChoices(Human human, int jobNumber)
         {
-            if (adult.IsEducated)
+            if (!human.IsAdult)
+            {
+                human.Occupation = new Student();
+                human.IsEducated = true;
+            }
+
+            if (human.IsEducated)
             {
                 switch (jobNumber)
                 {
                     case 0:
-                        adult.Occupation = new Programmer();
+                        human.Occupation = new Programmer();
                         break;
                     case 1:
-                        adult.Occupation = new Doctor();
+                        human.Occupation = new Doctor();
                         break;
                 }
             }
@@ -37,10 +43,10 @@ namespace SimulationLibrary
                 switch (jobNumber)
                 {
                     case 0:
-                        adult.Occupation = new FastFoodWorker();
+                        human.Occupation = new FastFoodWorker();
                         break;
                     case 1:
-                        adult.Occupation = new Cleaner();
+                        human.Occupation = new Cleaner();
                         break;
                 }
             }

@@ -16,6 +16,7 @@ namespace ConsoleApp2
             };
             var sim = new MySimulation();
             await gui.Start(sim);
+
         }
     }
 
@@ -26,6 +27,7 @@ namespace ConsoleApp2
         private BorderedDisplay clockDisplay = new BorderedDisplay(0, 11, 20, 3) { };
         private BorderedDisplay deathsDisplay = new BorderedDisplay(19, 11, 20, 3) { };
         private BorderedDisplay populationDisplay = new BorderedDisplay(38, 11, 20, 3) { };
+        private BorderedDisplay birthsDisplay = new BorderedDisplay(57, 11, 20, 3) { };
         private static DateTime time = new DateTime(); 
         public override List<BaseDisplay> Displays => new List<BaseDisplay>()
         {
@@ -33,7 +35,8 @@ namespace ConsoleApp2
             clockDisplay, 
             Input.CreateDisplay(0, -3, -1, 3), 
             deathsDisplay, 
-            populationDisplay
+            populationDisplay,
+            birthsDisplay
         };
 
         Population population = Population.Instance;
@@ -43,26 +46,56 @@ namespace ConsoleApp2
             time = time.AddSeconds(1);
             deathsDisplay.Value = "Deaths: " + population.Deaths.ToString();
             populationDisplay.Value = "Population: " + population.Count.ToString();
+            birthsDisplay.Value = "Births: " + population.Births.ToString();
             
-            if(time.Minute == 1 && time.Second < 1)
+            if(time.Minute == 0 && time.Second == 30)
             {
-                population.CreateCouples();
-                population.MakeChildren();
+                population.GetJobs();
+                LogAnnouncements();
             }
 
+            if (time.Minute == 1 && time.Second == 30)
+            {
+                population.Payday();
+                population.ReducePopulationHunger();
+                LogAnnouncements();
+            }
             if (time.Minute == 2 && time.Second < 1)
             {
-                log.Log(population.MakeChildrenAdults());
+                population.FoodShopping();
+                population.EatFood();
             }
 
-            if(time.Minute == 3)
+            if (time.Minute == 2 && time.Second == 30)
             {
+                population.MakeChildrenAdults();
+                population.CreateCouples();
+                population.MakeChildren();
+                LogAnnouncements();
+            }
+
+            if (time.Minute == 3)
+            {
+                population.CheckHunger();
+                population.CheckAge();
+
                 time = new DateTime();
+                population.AgeUpPopulation();
             }
 
             while (Input.HasInput)
             {
+                log.Log(Input.Consume());
             }
+        }
+
+        private void LogAnnouncements()
+        {
+            foreach (var announcement in population.Announce())
+            {
+                log.Log(announcement);
+            }
+            population.ClearAnnouncements();
         }
     }
 }

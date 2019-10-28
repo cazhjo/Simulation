@@ -7,9 +7,8 @@ namespace SimulationLibrary
 {
     public class Adult : Human
     {
-        public int Balance { get; set; }
-        public IOccupation Occupation { get; internal set; }
-        public string OccupationStatus => Occupation.Name;
+        public bool HasPartner { get; internal set; }
+        public Adult Partner { get; internal set; }
         
 
         public Adult()
@@ -33,7 +32,7 @@ namespace SimulationLibrary
 
         public override void GetOccupation()
         {
-            JobPicker.PickJob(this);
+            JobPicker.PickJob(this, 4);
         }
     }
 }

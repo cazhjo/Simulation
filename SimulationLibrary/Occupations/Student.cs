@@ -4,10 +4,10 @@ using System.Text;
 
 namespace SimulationLibrary.Occupations
 {
-    public class Cleaner : IOccupation
+    class Student : IOccupation
     {
-        public int Salary => 30;
+        public int Salary => 25;
 
-        public string Name => "Cleaner";
+        public string Name => "Student";
     }
 }

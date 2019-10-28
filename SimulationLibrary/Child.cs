@@ -6,20 +6,18 @@ namespace SimulationLibrary
 {
     public class Child : Human
     {
+        
+
         public Child()
         {
             Name = NameGenerator.GenerateName(6);
             IsAdult = false;
+            Occupation = new Unemployed();
         }
 
         public override void GetOccupation()
         {
-            bool canGetEducated = Globals.random.Next(0, 3) == 2;
-
-            if (canGetEducated)
-            {
-                IsEducated = true;
-            }
+            JobPicker.PickJob(this, 4);
         }
     }
 }
