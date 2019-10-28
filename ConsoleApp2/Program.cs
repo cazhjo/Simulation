@@ -14,7 +14,7 @@ namespace ConsoleApp2
             {
                 TargetUpdateTime = 100
             };
-            var sim = new MySimulation();
+            var sim = new LifeSimulation();
             await gui.Start(sim);
 
         }
@@ -23,7 +23,7 @@ namespace ConsoleApp2
 
 
 
-    public class MySimulation : Simulation
+    public class LifeSimulation : Simulation
     {
         private RollingDisplay log = new RollingDisplay(0, 0, -1, 12);
         private BorderedDisplay clockDisplay = new BorderedDisplay(0, 11, 20, 3) { };
@@ -35,6 +35,7 @@ namespace ConsoleApp2
         private bool announcePayday = true;
         private bool announceFamily = true;
         private bool announceDeath = true;
+
         public override List<BaseDisplay> Displays => new List<BaseDisplay>()
         {
             log,
@@ -119,50 +120,23 @@ namespace ConsoleApp2
                         break;
                     case "KillHuman":
                         population.KillHuman(Globals.random.Next(0, population.Count));
+                        LogAnnouncements(true);
                         break;
                     case "AnnounceJobs":
                         announceJob = !announceJob;
-                        if (announceJob)
-                        {
-                            log.Log("Showing job announcements!");
-                        }
-                        else
-                        {
-                            log.Log("Hiding job announcements!");
-                        }
+                        LogCommandAnnouncements(announceJob, "job");
                         break;
                     case "AnnouncePayday":
                         announcePayday = !announcePayday;
-                        if (announcePayday)
-                        {
-                            log.Log("Showing payday announcements!");
-                        }
-                        else
-                        {
-                            log.Log("Hiding payday announcements!");
-                        }
+                        LogCommandAnnouncements(announcePayday, "payday");
                         break;
                     case "AnnounceDeaths":
                         announceDeath = !announceDeath;
-                        if (announceDeath)
-                        {
-                            log.Log("Showing death announcements!");
-                        }
-                        else
-                        {
-                            log.Log("Hiding death announcements!");
-                        }
+                        LogCommandAnnouncements(announceDeath, "death");
                         break;
                     case "AnnounceFamily":
                         announceFamily = !announceFamily;
-                        if (announceFamily)
-                        {
-                            log.Log("Showing family announcements!");
-                        }
-                        else
-                        {
-                            log.Log("Hiding family announcements!");
-                        }
+                        LogCommandAnnouncements(announceFamily, "family");
                         break;
                     default:
                         break;
@@ -179,10 +153,23 @@ namespace ConsoleApp2
                 {
                     log.Log(announcement);
                 }
-                
+
             }
             population.ClearAnnouncements();
         }
+
+        private void LogCommandAnnouncements(bool announcementType, string announcementName)
+        {
+            if (announcementType)
+            {
+                log.Log($"Showing {announcementName} announcements");
+            }
+            else
+            {
+                log.Log($"Hiding {announcementName} announcements");
+            }
+        }
+
 
     }
 }

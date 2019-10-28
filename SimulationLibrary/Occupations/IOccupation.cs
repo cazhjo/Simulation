@@ -13,10 +13,5 @@ namespace SimulationLibrary
         {
             recipient.Balance += Salary;
         }
-
-        public void FireFromJob(Human adult)
-        {
-            adult.Occupation = new Unemployed();
-        }
     }
 }
