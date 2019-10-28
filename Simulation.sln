@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp2", "ConsoleApp2\ConsoleApp2.csproj", "{0F7C332A-38B7-4314-AD3F-91C3D102A545}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimulationApp", "ConsoleApp2\SimulationApp.csproj", "{0F7C332A-38B7-4314-AD3F-91C3D102A545}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimulationLibrary", "SimulationLibrary\SimulationLibrary.csproj", "{9B0AEB34-8DA8-4A79-927A-310D344132CB}"
 EndProject

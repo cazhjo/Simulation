@@ -83,6 +83,30 @@ namespace SimulationTests
         }
 
         [Test]
+        public void TestCouple_CantMakeCouple_WithThemselves()
+        {
+            Adult adult = new Adult();
+
+            Couple.MakeCouple(adult, adult, 1);
+
+            Assert.IsNull(adult.Partner);
+        }
+
+        [Test]
+        public void TestCouple_CantMakeCouple_WithAlreadyCoupleAdult()
+        {
+            Adult adult1 = new Adult();
+            Adult adult2 = new Adult();
+            Adult adult3 = new Adult();
+
+
+            Couple.MakeCouple(adult1, adult2, 1);
+            Couple.MakeCouple(adult3, adult1, 1);
+
+            Assert.IsNull(adult3.Partner);
+        }
+
+        [Test]
         public void TestMakingChild_Adult_KeepsName()
         {
             Human human = new Child();
