@@ -134,6 +134,16 @@ namespace SimulationTests
         }
 
         [Test]
+        public void TestChild_GetOccupation()
+        {
+            Child child = new Child();
+
+            child.GetOccupation(1);
+
+            Assert.IsTrue(child.Occupation.Name == "Student");
+        }
+
+        [Test]
         public void TestHuman_BuyFood_DecreasesBalance()
         {
             Human human = new Adult();

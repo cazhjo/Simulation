@@ -26,28 +26,31 @@ namespace SimulationLibrary
                 human.IsEducated = true;
             }
 
-            if (human.IsEducated)
+            if (human.IsAdult)
             {
-                switch (jobNumber)
+                if (human.IsEducated)
                 {
-                    case 0:
-                        human.Occupation = new Programmer();
-                        break;
-                    case 1:
-                        human.Occupation = new Doctor();
-                        break;
+                    switch (jobNumber)
+                    {
+                        case 0:
+                            human.Occupation = new Programmer();
+                            break;
+                        case 1:
+                            human.Occupation = new Doctor();
+                            break;
+                    }
                 }
-            }
-            else
-            {
-                switch (jobNumber)
+                else
                 {
-                    case 0:
-                        human.Occupation = new FastFoodWorker();
-                        break;
-                    case 1:
-                        human.Occupation = new Cleaner();
-                        break;
+                    switch (jobNumber)
+                    {
+                        case 0:
+                            human.Occupation = new FastFoodWorker();
+                            break;
+                        case 1:
+                            human.Occupation = new Cleaner();
+                            break;
+                    }
                 }
             }
         }
