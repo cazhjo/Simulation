@@ -9,8 +9,7 @@ namespace SimulationLibrary
     {
         public bool HasPartner { get; internal set; }
         public Adult Partner { get; internal set; }
-        
-
+        public List<Human> Children { get; private set; } = new List<Human>();
         public Adult()
         {
             Name = null ?? NameGenerator.GenerateName(6);
@@ -32,9 +31,28 @@ namespace SimulationLibrary
             }
         }
 
-        public override void GetOccupation(int chance)
+        public override string GetOccupation(int chance)
         {
-            JobPicker.PickJob(this, chance);
+            if (Occupation.Name == "Unemployed")
+            {
+                JobPicker.PickJob(this, chance);
+                if (Occupation.Name != "Unemployed")
+                {
+                    return $"{Name} has gotten a job as a {Occupation.Name}";
+                }
+            }
+            return null;
+        }
+
+        public override int CountOfChildren()
+        {
+            int temp = 0;
+            foreach (var child in Children)
+            {
+                temp += 1 + child.CountOfChildren();
+            }
+
+            return temp;
         }
     }
 }

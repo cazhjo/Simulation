@@ -7,50 +7,41 @@ namespace SimulationLibrary
 {
     public static class JobPicker
     {
-        public static void PickJob(Human human, int chance)
+        public static void PickJob(Adult adult, int chance)
         {
             bool canGetJob = Globals.random.Next(0, chance) == chance - 1;
             if (canGetJob)
             {
                 int jobPicker = Globals.random.Next(0, 2);
 
-                JobChoices(human, jobPicker);
+                JobChoices(adult, jobPicker);
             }
         }
 
-        private static void JobChoices(Human human, int jobNumber)
+        private static void JobChoices(Adult adult, int jobNumber)
         {
-            if (!human.IsAdult)
+            if (adult.IsEducated)
             {
-                human.Occupation = new Student();
-                human.IsEducated = true;
-            }
-
-            if (human.IsAdult)
-            {
-                if (human.IsEducated)
+                switch (jobNumber)
                 {
-                    switch (jobNumber)
-                    {
-                        case 0:
-                            human.Occupation = new Programmer();
-                            break;
-                        case 1:
-                            human.Occupation = new Doctor();
-                            break;
-                    }
+                    case 0:
+                        adult.Occupation = new Programmer();
+                        break;
+                    case 1:
+                        adult.Occupation = new Doctor();
+                        break;
                 }
-                else
+            }
+            else
+            {
+                switch (jobNumber)
                 {
-                    switch (jobNumber)
-                    {
-                        case 0:
-                            human.Occupation = new FastFoodWorker();
-                            break;
-                        case 1:
-                            human.Occupation = new Cleaner();
-                            break;
-                    }
+                    case 0:
+                        adult.Occupation = new FastFoodWorker();
+                        break;
+                    case 1:
+                        adult.Occupation = new Cleaner();
+                        break;
                 }
             }
         }

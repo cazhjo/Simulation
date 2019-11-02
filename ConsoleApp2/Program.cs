@@ -16,7 +16,6 @@ namespace ConsoleApp2
             };
             var sim = new LifeSimulation();
             await gui.Start(sim);
-
         }
     }
 

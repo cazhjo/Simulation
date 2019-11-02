@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimulationLibrary.Occupations;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +7,6 @@ namespace SimulationLibrary
 {
     public class Child : Human
     {
-        
 
         public Child()
         {
@@ -15,9 +15,21 @@ namespace SimulationLibrary
             Occupation = new Unemployed();
         }
 
-        public override void GetOccupation(int chance)
+        public override int CountOfChildren()
         {
-            JobPicker.PickJob(this, chance);
+            return 0;
+        }
+
+        public override string GetOccupation(int chance)
+        {
+            int schoolChance = Globals.random.Next(0, chance);
+
+            if(schoolChance == chance - 1)
+            {
+                Occupation = new Student();
+                return $"{Name} has started studying";
+            }
+            return null;
         }
     }
 }

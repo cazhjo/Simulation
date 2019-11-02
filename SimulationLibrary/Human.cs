@@ -1,4 +1,4 @@
-﻿using SimulationLibrary.Food;
+﻿using SimulationLibrary.FoodClasses;
 using System;
 using System.Collections.Generic;
 
@@ -13,7 +13,7 @@ namespace SimulationLibrary
         public bool IsEducated { get; internal set; }
         public bool IsAdult { get; protected set; }
         public IOccupation Occupation { get; internal set; }
-        internal List<IFood> FoodInventory { get; set; } = new List<IFood>();
+        internal List<Food> FoodInventory { get; set; } = new List<Food>();
 
         public void BuyFood()
         {
@@ -52,6 +52,7 @@ namespace SimulationLibrary
             Hunger -= amount;
         }
 
-        public abstract void GetOccupation(int chance);
+        public abstract string GetOccupation(int chance);
+        public abstract int CountOfChildren();
     }
 }

@@ -18,6 +18,8 @@ namespace SimulationLibrary
                 adult1.HasPartner = true;
                 adult2.HasPartner = true;
 
+                
+
                 return true;
             }
             return false;
@@ -40,7 +42,10 @@ namespace SimulationLibrary
             int tempChance = Globals.random.Next(0, chance);
             if (adult.HasPartner && tempChance == chance - 1)
             {
-                return new Child();
+                Child child = new Child();
+                adult.Children.Add(child);
+                adult.Partner.Children.Add(child);
+                return child;
             }
             return null;
         }

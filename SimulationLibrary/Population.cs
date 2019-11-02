@@ -141,25 +141,7 @@ namespace SimulationLibrary
         {
             foreach (var human in Humans)
             {
-                if(human.Occupation.Name == "Unemployed")
-                {
-                    if (human.IsAdult)
-                    {
-                        human.GetOccupation(4);
-                        if (human.Occupation.Name != "Unemployed")
-                        {
-                            Announcements.Add($"{human.Name} has gotten a job as a {human.Occupation.Name}");
-                        }
-                    }
-                    else
-                    {
-                        human.GetOccupation(4);
-                        if(human.Occupation.Name != "Unemployed")
-                        {
-                            Announcements.Add($"{human.Name} has started School");
-                        }
-                    }
-                }
+                Announcements.Add(human.GetOccupation(5));
             }
         }
 
