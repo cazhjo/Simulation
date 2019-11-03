@@ -139,9 +139,15 @@ namespace SimulationLibrary
 
         public void GetJobs()
         {
+            string temp = string.Empty;
             foreach (var human in Humans)
             {
-                Announcements.Add(human.GetOccupation(5));
+                temp = human.GetOccupation(5);
+
+                if (temp != null)
+                {
+                    Announcements.Add(temp);
+                }
             }
         }
 
@@ -178,6 +184,24 @@ namespace SimulationLibrary
         public void ClearAnnouncements()
         {
             Announcements.Clear();
+        }
+
+        public Human MostChildren()
+        {
+            int temp = 0;
+            int count = 0;
+            Human tempHuman = null;
+
+            foreach (var human in Humans)
+            {
+                count = human.CountOfChildren();
+                if(count > temp)
+                {
+                    temp = count;
+                    tempHuman = human;
+                }
+            }
+            return tempHuman;
         }
 
         public void KillHuman(int index)

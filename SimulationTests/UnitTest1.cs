@@ -14,6 +14,19 @@ namespace SimulationTests
         }
 
         [Test]
+        public void TestAdultCountOfChildren_Works()
+        {
+            Adult adult1 = new Adult();
+            Adult adult2 = new Adult();
+
+            Couple.MakeCouple(adult1, adult2, 1);
+            Couple.MakeChild(adult1, 1);
+            Couple.MakeChild(adult1, 1);
+
+            Assert.IsTrue(adult1.CountOfChildren() == 2 && adult2.CountOfChildren() == 2);
+        }
+
+        [Test]
         public void TestHumanOccupation_PaysMoney()
         {
             Human human1 = new Adult();

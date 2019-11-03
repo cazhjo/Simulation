@@ -27,6 +27,7 @@ namespace SimulationLibrary
             if(schoolChance == chance - 1)
             {
                 Occupation = new Student();
+                IsEducated = true;
                 return $"{Name} has started studying";
             }
             return null;

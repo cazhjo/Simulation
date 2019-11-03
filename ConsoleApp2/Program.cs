@@ -29,11 +29,15 @@ namespace ConsoleApp2
         private BorderedDisplay deathsDisplay = new BorderedDisplay(19, 11, 20, 3) { };
         private BorderedDisplay populationDisplay = new BorderedDisplay(38, 11, 20, 3) { };
         private BorderedDisplay birthsDisplay = new BorderedDisplay(57, 11, 20, 3) { };
+        private BorderedDisplay mostChildrenDisplay1 = new BorderedDisplay(0, 13, 20, 3) { };
+        private BorderedDisplay mostChildrenDisplay2 = new BorderedDisplay(0, 15, 20, 3) { };
+        private BorderedDisplay mostChildrenDisplay3 = new BorderedDisplay(0, 17, 20, 3) { };
         private static DateTime time = new DateTime();
         private bool announceJob = true;
         private bool announcePayday = true;
         private bool announceFamily = true;
         private bool announceDeath = true;
+        private Human topHuman;
 
         public override List<BaseDisplay> Displays => new List<BaseDisplay>()
         {
@@ -42,7 +46,10 @@ namespace ConsoleApp2
             Input.CreateDisplay(0, -3, -1, 3),
             deathsDisplay,
             populationDisplay,
-            birthsDisplay
+            birthsDisplay,
+            mostChildrenDisplay1,
+            mostChildrenDisplay2,
+            mostChildrenDisplay3
         };
 
         private List<string> Commands = new List<string>()
@@ -65,6 +72,10 @@ namespace ConsoleApp2
             deathsDisplay.Value = "Deaths: " + population.Deaths.ToString();
             populationDisplay.Value = "Population: " + population.Count.ToString();
             birthsDisplay.Value = "Births: " + population.Births.ToString();
+            mostChildrenDisplay1.Value = $"Most Children";
+            mostChildrenDisplay2.Value = $"Name: {topHuman?.Name}";
+            mostChildrenDisplay3.Value = $"Children: {topHuman?.CountOfChildren()}";
+
 
             if (time.Minute == 0 && time.Second == 30)
             {
@@ -90,6 +101,8 @@ namespace ConsoleApp2
                 population.CreateCouples();
                 population.MakeChildren();
                 LogAnnouncements(announceFamily);
+                topHuman = population.MostChildren();
+                
             }
 
             if (time.Minute == 3)
