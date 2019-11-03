@@ -10,6 +10,7 @@ namespace SimulationLibrary
     {
         public bool HasPartner { get; internal set; }
         public Adult Partner { get; internal set; }
+        public List<Human> Children { get; private set; } = new List<Human>();
 
         public Adult()
         {
