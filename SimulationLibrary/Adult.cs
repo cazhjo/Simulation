@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace SimulationLibrary
 {
@@ -9,7 +10,6 @@ namespace SimulationLibrary
     {
         public bool HasPartner { get; internal set; }
         public Adult Partner { get; internal set; }
-        private List<Human> countedHumans = new List<Human>();
 
         public Adult()
         {
@@ -60,7 +60,7 @@ namespace SimulationLibrary
         public override int CountOfChildren()
         {
             int temp = 0;
-            foreach (var child in Children)
+            foreach (var child in Children.Distinct())
             {
                 temp += 1 + child.CountOfChildren();
             }

@@ -10,6 +10,13 @@ namespace SimulationLibrary
         public static bool MakeCouple(Adult adult1, Adult adult2, int chance)
         {
             int tempChance = Globals.random.Next(0, chance);
+            if ((adult1.Parent1 == adult2.Parent1) && (adult1.Parent2 == adult2.Parent2))
+            {
+                if (adult1.Parent1 != null || adult1.Parent2 != null)
+                {
+                    return false;
+                }
+            }
             if ((!adult1.HasPartner && !adult2.HasPartner)&& (adult1 != adult2) && (tempChance == chance - 1))
             {
                 adult1.Partner = adult2;
@@ -40,9 +47,11 @@ namespace SimulationLibrary
             int tempChance = Globals.random.Next(0, chance);
             if (adult.HasPartner && tempChance == chance - 1)
             {
-                Child child = new Child();
-                child.Parent1 = adult;
-                child.Parent2 = adult.Partner;
+                Child child = new Child
+                {
+                    Parent1 = adult,
+                    Parent2 = adult.Partner
+                };
 
                 //if (adult.Parent1 != null)
                 //{

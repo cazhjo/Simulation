@@ -10,30 +10,12 @@ namespace ConsoleApp2
     {
         static async Task Main(string[] args)
         {
-            //var gui = new ConsoleGUI()
-            //{
-            //    TargetUpdateTime = 100
-            //};
-            //var sim = new LifeSimulation();
-            //await gui.Start(sim);
-
-            Adult adult1 = new Adult();
-            Adult adult2 = new Adult();
-
-            Couple.MakeCouple(adult1, adult2, 1);
-            Human human1 = Couple.MakeChild(adult1, 1);
-            Human human2 = Couple.MakeChild(adult1, 1);
-
-            Console.WriteLine(adult1.CountOfChildren());
-
-            human1 = new Adult((Child)human1);
-            human2 = new Adult((Child)human2);
-
-            Couple.MakeCouple((Adult)human1, (Adult)human2, 1);
-            Couple.MakeChild((Adult)human1, 1);
-            Couple.MakeChild((Adult)human1, 1);
-
-            Console.WriteLine(adult1.CountOfChildren());
+            var gui = new ConsoleGUI()
+            {
+                TargetUpdateTime = 100
+            };
+            var sim = new LifeSimulation();
+            await gui.Start(sim);
         }
     }
 

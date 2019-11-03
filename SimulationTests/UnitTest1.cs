@@ -32,8 +32,13 @@ namespace SimulationTests
             Adult adult1 = new Adult();
             Adult adult2 = new Adult();
 
+            Adult adult3 = new Adult();
+            Adult adult4 = new Adult();
+
+            Couple.MakeCouple(adult3, adult4, 1);
+            Human human1 = Couple.MakeChild(adult3, 1);
+
             Couple.MakeCouple(adult1, adult2, 1);
-            Human human1 = Couple.MakeChild(adult1, 1);
             Human human2 = Couple.MakeChild(adult1, 1);
 
             human1 = new Adult((Child)human1);
@@ -43,7 +48,7 @@ namespace SimulationTests
             Couple.MakeChild((Adult)human1, 1);
             Couple.MakeChild((Adult)human1, 1);
 
-            Assert.IsTrue(adult1.CountOfChildren() == 4 && adult2.CountOfChildren() == 4);
+            Assert.IsTrue(adult1.CountOfChildren() == 3 && adult2.CountOfChildren() == 3 && adult3.CountOfChildren() == 3 && adult4.CountOfChildren() == 3);
         }
 
         [Test]
@@ -103,6 +108,22 @@ namespace SimulationTests
 
             Assert.IsTrue(human.GetType() == typeof(Child));
 
+        }
+
+        [Test]
+        public void TestCouple_MakeCouple_ReturnsFalse_WhenSameParents()
+        {
+            Adult adult1 = new Adult();
+            Adult adult2 = new Adult();
+
+            Couple.MakeCouple(adult1, adult2, 1);
+            Human human1 = Couple.MakeChild(adult1, 1);
+            Human human2 = Couple.MakeChild(adult1, 1);
+
+            human1 = new Adult((Child)human1);
+            human2 = new Adult((Child)human2);
+
+            Assert.IsFalse(Couple.MakeCouple((Adult)human1, (Adult)human2, 1));
         }
 
         [Test]
