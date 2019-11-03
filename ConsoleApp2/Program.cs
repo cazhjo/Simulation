@@ -142,7 +142,7 @@ namespace ConsoleApp2
                         announcePayday = !announcePayday;
                         LogCommandAnnouncements(announcePayday, "payday");
                         break;
-                    case "AnnounceDeaths":
+                    case "AnnounceDeath":
                         announceDeath = !announceDeath;
                         LogCommandAnnouncements(announceDeath, "death");
                         break;

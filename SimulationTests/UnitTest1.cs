@@ -147,6 +147,14 @@ namespace SimulationTests
         }
 
         [Test]
+        public void TestChild_CountOfChildren_ReturnsZero()
+        {
+            Child child = new Child();
+
+            Assert.AreEqual(child.CountOfChildren(), 0);
+        }
+
+        [Test]
         public void TestChild_GetOccupation()
         {
             Child child = new Child();
