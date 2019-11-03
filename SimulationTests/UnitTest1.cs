@@ -27,6 +27,26 @@ namespace SimulationTests
         }
 
         [Test]
+        public void TestAdultCountOfChildren_WorksWithMultipleGenerations()
+        {
+            Adult adult1 = new Adult();
+            Adult adult2 = new Adult();
+
+            Couple.MakeCouple(adult1, adult2, 1);
+            Human human1 = Couple.MakeChild(adult1, 1);
+            Human human2 = Couple.MakeChild(adult1, 1);
+
+            human1 = new Adult((Child)human1);
+            human2 = new Adult((Child)human2);
+
+            Couple.MakeCouple((Adult)human1, (Adult)human2, 1);
+            Couple.MakeChild((Adult)human1, 1);
+            Couple.MakeChild((Adult)human1, 1);
+
+            Assert.IsTrue(adult1.CountOfChildren() == 4 && adult2.CountOfChildren() == 4);
+        }
+
+        [Test]
         public void TestHumanOccupation_PaysMoney()
         {
             Human human1 = new Adult();

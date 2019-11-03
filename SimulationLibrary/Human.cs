@@ -13,6 +13,9 @@ namespace SimulationLibrary
         public bool IsEducated { get; internal set; }
         public bool IsAdult { get; protected set; }
         public IOccupation Occupation { get; internal set; }
+        internal Adult Parent1 { get; set; }
+        internal Adult Parent2 { get; set; }
+        public List<Human> Children { get; private set; } = new List<Human>();
         internal List<Food> FoodInventory { get; set; } = new List<Food>();
 
         public void BuyFood()

@@ -9,7 +9,8 @@ namespace SimulationLibrary
     {
         public bool HasPartner { get; internal set; }
         public Adult Partner { get; internal set; }
-        public List<Human> Children { get; private set; } = new List<Human>();
+        private List<Human> countedHumans = new List<Human>();
+
         public Adult()
         {
             Name = null ?? NameGenerator.GenerateName(6);
@@ -27,6 +28,18 @@ namespace SimulationLibrary
                 {
                     IsEducated = true;
                     Balance = child.Balance;
+                }
+
+                if (child.Parent1 != null)
+                {
+                    Parent1 = child.Parent1;
+                    child.Parent1.Children[child.Parent1.Children.IndexOf(child)] = this;
+                }
+
+                if (child.Parent2 != null)
+                {
+                    Parent2 = child.Parent2;
+                    child.Parent2.Children[child.Parent2.Children.IndexOf(child)] = this;
                 }
             }
         }
@@ -54,7 +67,8 @@ namespace SimulationLibrary
 
             return temp;
         }
+
     }
 }
-    
+
 
